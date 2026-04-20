@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features — FreightIQ</title>
+  <meta name="description" content="12 modules covering every aspect of freight brokerage — powered by AI and RPA by Signity Solutions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ─── Page-level hero (smaller than homepage hero) ─────────── */
+    .page-hero {
+      background: var(--navy);
+      padding: 120px 0 72px;
+      text-align: center;
+    }
+    .page-hero h1 { margin-bottom: 16px; }
+    .page-hero p  { color: var(--gray); max-width: 560px; margin: 0 auto; font-size: 1.1rem; }
+
+    /* ─── Feature rows ──────────────────────────────────────────── */
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 64px;
+    }
+    .feature-row.reverse { flex-direction: row-reverse; }
+    .feature-row-content { flex: 1; min-width: 0; }
+    .feature-row .feature-mockup { flex: 1; min-width: 0; }
+
+    @media (max-width: 860px) {
+      .feature-row,
+      .feature-row.reverse { flex-direction: column; gap: 36px; }
+    }
+
+    /* ─── Feature points list ───────────────────────────────────── */
+    .feature-points {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .feature-points li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .9rem;
+    }
+    .feature-points li::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* Light section text for dark backgrounds */
+    .section-dark .feature-points li,
+    .section-navy .feature-points li { color: var(--gray); }
+    .section-light .feature-points li,
+    .section .feature-points li      { color: #4a5568; }
+
+    /* ─── Mockup screen — reusable ──────────────────────────────── */
+    .feature-mockup {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 4px;
+    }
+    .section-light .feature-mockup,
+    .section .feature-mockup {
+      background: rgba(11,19,40,.06);
+      border: 1px solid rgba(11,19,40,.1);
+    }
+    .mockup-screen {
+      background: #0f1e38;
+      border-radius: 13px;
+      padding: 20px;
+      min-height: 260px;
+    }
+
+    /* Mockup sub-components */
+    .mock-row  { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .mock-label { font-size: .7rem; color: var(--gray); }
+    .mock-val   { font-size: .85rem; font-weight: 600; color: var(--white); }
+    .mock-bar-wrap { background: rgba(255,255,255,.08); border-radius: 4px; height: 6px; margin-bottom: 10px; overflow: hidden; }
+    .mock-bar-fill { height: 100%; border-radius: 4px; background: var(--orange); }
+    .mock-tag-row  { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+    .mock-kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .mock-kpi {
+      background: rgba(255,255,255,.05);
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .mock-kpi .k-label { font-size: .65rem; color: var(--gray); margin-bottom: 3px; }
+    .mock-kpi .k-val   { font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .mock-kpi .k-sub   { font-size: .62rem; color: #4ade80; }
+    .mock-kpi .k-sub.warn { color: #fb923c; }
+
+    .mock-table-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      font-size: .75rem;
+    }
+    .mock-table-row:last-child { border-bottom: none; }
+    .mock-table-row .col-main  { color: var(--white); font-weight: 500; }
+    .mock-table-row .col-side  { color: var(--gray); }
+
+    .mock-kanban {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+    .mock-kanban-col {
+      flex: 0 0 auto;
+      width: 100px;
+      background: rgba(255,255,255,.04);
+      border-radius: 8px;
+      padding: 8px;
+    }
+    .mock-kanban-col .col-title { font-size: .6rem; color: var(--gray); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+    .mock-kanban-card { background: rgba(255,255,255,.07); border-radius: 6px; padding: 6px; margin-bottom: 5px; font-size: .65rem; color: var(--white); }
+
+    .mock-bot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: rgba(255,255,255,.04);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: .75rem;
+    }
+    .mock-bot-name { color: var(--white); font-weight: 500; }
+    .mock-bot-sub  { font-size: .62rem; color: var(--gray); }
+
+    .mock-model-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .mock-model-row:last-child { border-bottom: none; }
+    .mock-model-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .mock-model-name { font-size: .75rem; color: var(--white); flex: 1; }
+    .mock-model-acc  { font-size: .72rem; font-weight: 600; color: #4ade80; }
+
+    .mock-inbox-item {
+      display: flex;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      align-items: flex-start;
+    }
+    .mock-inbox-item:last-child { border-bottom: none; }
+    .mock-inbox-avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(249,115,22,.2); display: flex; align-items: center; justify-content: center; font-size: .6rem; font-weight: 700; color: var(--orange); flex-shrink: 0; }
+    .mock-inbox-body { flex: 1; min-width: 0; }
+    .mock-inbox-name { font-size: .72rem; font-weight: 600; color: var(--white); }
+    .mock-inbox-msg  { font-size: .65rem; color: var(--gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div>FreightIQ<span class="nav-logo-sub">BY SIGNITY SOLUTIONS</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="features.html" style="color:var(--orange);">Features</a>
+        <a href="for-brokers.html">For Brokers</a>
+        <a href="for-carriers.html">For Carriers</a>
+        <a href="automation.html">AI &amp; RPA</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="about.html">About</a>
+      </div>
+      <a href="#demo" class="btn-primary nav-cta btn-sm">Request Demo</a>
+      <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="features.html">Features</a>
+    <a href="for-brokers.html">For Brokers</a>
+    <a href="for-carriers.html">For Carriers</a>
+    <a href="automation.html">AI &amp; RPA</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="about.html">About</a>
+    <a href="#demo" class="btn-primary">Request Demo</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-tag animate" style="justify-content:center;">Platform Features</div>
+      <h1 class="animate">Everything You Need,<br><span style="color:var(--orange)">Fully Automated</span></h1>
+      <p class="animate">12 modules covering every aspect of freight brokerage — powered by AI and RPA.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 01: Operations Dashboard -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 01</div>
+          <h3>Operations Dashboard</h3>
+          <p style="color:#4a5568;">Monitor everything in one place. 6 KPIs, real-time charts, AI insights panel, and bot status — all on a single screen designed for operations leaders.</p>
+          <ul class="feature-points">
+            <li>Live revenue tracking</li>
+            <li>AI exception alerts</li>
+            <li>Bot health monitoring</li>
+            <li>Performance vs. targets</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div class="mock-row" style="margin-bottom:14px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">Operations Dashboard</span>
+              <span class="badge badge-green">Live</span>
+            </div>
+            <div class="mock-kpi-grid">
+              <div class="mock-kpi">
+                <div class="k-label">Revenue MTD</div>
+                <div class="k-val" style="color:var(--orange);">$1.21M</div>
+                <div class="k-sub">+12.4%</div>
+              </div>
+              <div class="mock-kpi">
+                <div class="k-label">Active Loads</div>
+                <div class="k-val">58</div>
+                <div class="k-sub">+7 today</div>
+              </div>
+              <div class="mock-kpi">
+                <div class="k-label">On-Time Rate</div>
+                <div class="k-val">94.2%</div>
+                <div class="k-sub">+7.2%</div>
+              </div>
+              <div class="mock-kpi">
+                <div class="k-label">Bot Uptime</div>
+                <div class="k-val">99.1%</div>
+                <div class="k-sub">12/12 active</div>
+              </div>
+            </div>
+            <div style="background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:8px;padding:10px;">
+              <div style="font-size:.65rem;color:var(--orange);font-weight:600;margin-bottom:4px;">AI Insight</div>
+              <div style="font-size:.68rem;color:var(--gray);">Revenue pace 8.2% above monthly target. Load volume up 14%. Consider capacity expansion on Chicago-Dallas lane.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 02: Load Board -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 02</div>
+          <h3>Load Board</h3>
+          <p style="color:var(--gray);">Manage 58+ active loads across 9 data columns. Multi-filter, lifecycle tracking, and instant status updates — everything your team needs in one view.</p>
+          <ul class="feature-points">
+            <li>Multi-criteria filtering</li>
+            <li>Status lifecycle management</li>
+            <li>Bulk operations</li>
+            <li>Real-time updates</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div class="mock-row" style="margin-bottom:12px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">Load Board</span>
+              <span style="font-size:.72rem;color:var(--gray);">58 loads · 9 columns</span>
+            </div>
+            <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+              <span class="badge badge-blue">All Loads</span>
+              <span class="badge badge-orange">In-Transit: 21</span>
+              <span class="badge badge-green">Delivered: 14</span>
+            </div>
+            <div class="mock-table-row" style="font-size:.65rem;color:var(--gray);padding-bottom:5px;">
+              <span>Load ID</span><span>Origin</span><span>Status</span><span>Carrier</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main">#FQ-2847</span>
+              <span class="col-side">Chicago</span>
+              <span><span class="badge badge-orange" style="font-size:.6rem;padding:2px 7px;">In-Transit</span></span>
+              <span class="col-side">Swift</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main">#FQ-2846</span>
+              <span class="col-side">Dallas</span>
+              <span><span class="badge badge-green" style="font-size:.6rem;padding:2px 7px;">Delivered</span></span>
+              <span class="col-side">Apex</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main">#FQ-2845</span>
+              <span class="col-side">Atlanta</span>
+              <span><span class="badge badge-blue" style="font-size:.6rem;padding:2px 7px;">Booked</span></span>
+              <span class="col-side">Keystone</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main">#FQ-2844</span>
+              <span class="col-side">Phoenix</span>
+              <span><span class="badge badge-orange" style="font-size:.6rem;padding:2px 7px;">In-Transit</span></span>
+              <span class="col-side">RapidHaul</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 03: AI Carrier Matching -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 03</div>
+          <h3>AI Carrier Matching</h3>
+          <p style="color:#4a5568;">Score 32 carriers across 6 signals per load. Get explainable AI reasoning for every recommendation — so your team always knows why a carrier was chosen.</p>
+          <ul class="feature-points">
+            <li>6-signal scoring model</li>
+            <li>Confidence scores 0–100</li>
+            <li>Natural language explanations</li>
+            <li>Historical performance data</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div style="font-weight:700;font-size:.9rem;color:var(--white);margin-bottom:4px;">AI Carrier Matching</div>
+            <div style="font-size:.68rem;color:var(--gray);margin-bottom:12px;">Load #FQ-2847 · 32 carriers evaluated</div>
+            <div class="mock-table-row" style="font-size:.63rem;color:var(--gray);">
+              <span>Carrier</span><span>On-Time</span><span>Score</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.75rem;">Swift Transport</span>
+              <span class="col-side">96.2%</span>
+              <span style="font-weight:700;color:#4ade80;">96</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.75rem;">Apex Freight</span>
+              <span class="col-side">93.8%</span>
+              <span style="font-weight:700;color:#86efac;">89</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.75rem;">Keystone Log.</span>
+              <span class="col-side">91.1%</span>
+              <span style="font-weight:700;color:#fde68a;">82</span>
+            </div>
+            <div style="margin-top:10px;">
+              <div style="font-size:.63rem;color:var(--gray);margin-bottom:6px;">Signal breakdown · Swift Transport</div>
+              <div class="mock-label" style="margin-bottom:3px;">Lane familiarity</div>
+              <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:95%;background:#4ade80;"></div></div>
+              <div class="mock-label" style="margin-bottom:3px;">Compliance score</div>
+              <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:98%;background:#4ade80;"></div></div>
+              <div class="mock-label" style="margin-bottom:3px;">Capacity available</div>
+              <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:88%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 04: Dispatch & Live Tracking -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 04</div>
+          <h3>Dispatch &amp; Live Tracking</h3>
+          <p style="color:var(--gray);">GPS map with 15 active loads. AI predicts ETAs at 92.4% accuracy and flags delays proactively before they become problems.</p>
+          <ul class="feature-points">
+            <li>Real-time GPS tracking</li>
+            <li>AI ETA prediction</li>
+            <li>Delay alert automation</li>
+            <li>Driver communication</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div class="mock-row" style="margin-bottom:10px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">Live Tracking</span>
+              <span class="badge badge-green">15 Active</span>
+            </div>
+            <!-- Stylized map area -->
+            <div style="background:rgba(255,255,255,.04);border-radius:10px;height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);">
+              <div style="position:absolute;inset:0;opacity:.3;background: repeating-linear-gradient(0deg,transparent,transparent 19px,rgba(255,255,255,.04) 20px),repeating-linear-gradient(90deg,transparent,transparent 19px,rgba(255,255,255,.04) 20px);"></div>
+              <!-- Fake truck pins -->
+              <div style="position:absolute;top:25%;left:30%;width:10px;height:10px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;"></div>
+              <div style="position:absolute;top:55%;left:60%;width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 6px var(--orange);"></div>
+              <div style="position:absolute;top:40%;left:75%;width:10px;height:10px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;"></div>
+              <div style="position:absolute;top:70%;left:20%;width:10px;height:10px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;"></div>
+              <div style="position:absolute;bottom:15%;left:50%;width:10px;height:10px;border-radius:50%;background:#fbbf24;box-shadow:0 0 6px #fbbf24;"></div>
+              <span style="font-size:.65rem;color:var(--gray);z-index:1;">Interactive GPS Map · 15 loads</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.73rem;">#FQ-2847 · Swift</span>
+              <span class="col-side">ETA: 2h 14m</span>
+              <span class="badge badge-green" style="font-size:.6rem;padding:2px 7px;">On Time</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.73rem;">#FQ-2841 · RapidHaul</span>
+              <span class="col-side">ETA: 5h 02m</span>
+              <span class="badge badge-orange" style="font-size:.6rem;padding:2px 7px;">Delay Risk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 05: Carrier Directory -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 05</div>
+          <h3>Carrier Directory</h3>
+          <p style="color:#4a5568;">AI-scored carrier profiles with insurance monitoring, compliance badges, and full performance history — so you always know who you're working with.</p>
+          <ul class="feature-points">
+            <li>AI performance scores</li>
+            <li>Insurance expiry alerts</li>
+            <li>Compliance verification</li>
+            <li>Load history analysis</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div style="font-weight:700;font-size:.9rem;color:var(--white);margin-bottom:12px;">Carrier Directory</div>
+            <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px;margin-bottom:8px;">
+              <div class="mock-row">
+                <span style="font-weight:600;font-size:.82rem;color:var(--white);">Swift Transport LLC</span>
+                <span style="font-size:1rem;font-weight:700;color:#4ade80;">96</span>
+              </div>
+              <div style="display:flex;gap:6px;margin:6px 0;">
+                <span class="badge badge-green" style="font-size:.6rem;">Compliant</span>
+                <span class="badge badge-blue" style="font-size:.6rem;">Insured</span>
+                <span class="badge badge-green" style="font-size:.6rem;">Preferred</span>
+              </div>
+              <div style="font-size:.65rem;color:var(--gray);">142 loads · On-time: 96.2% · Insurance exp: Dec 2025</div>
+            </div>
+            <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px;margin-bottom:8px;">
+              <div class="mock-row">
+                <span style="font-weight:600;font-size:.82rem;color:var(--white);">Apex Freight Co.</span>
+                <span style="font-size:1rem;font-weight:700;color:#86efac;">89</span>
+              </div>
+              <div style="display:flex;gap:6px;margin:6px 0;">
+                <span class="badge badge-green" style="font-size:.6rem;">Compliant</span>
+                <span class="badge badge-orange" style="font-size:.6rem;">Insurance Due</span>
+              </div>
+              <div style="font-size:.65rem;color:var(--gray);">87 loads · On-time: 93.8% · Insurance exp: Jan 2026</div>
+            </div>
+            <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px;">
+              <div class="mock-row">
+                <span style="font-weight:600;font-size:.82rem;color:var(--white);">Keystone Logistics</span>
+                <span style="font-size:1rem;font-weight:700;color:#fde68a;">82</span>
+              </div>
+              <div style="display:flex;gap:6px;margin:6px 0;">
+                <span class="badge badge-green" style="font-size:.6rem;">Compliant</span>
+                <span class="badge badge-blue" style="font-size:.6rem;">Insured</span>
+              </div>
+              <div style="font-size:.65rem;color:var(--gray);">203 loads · On-time: 91.1% · Insurance exp: Mar 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 06: Document Center -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 06</div>
+          <h3>Document Center</h3>
+          <p style="color:var(--gray);">AI OCR with per-field confidence scores. Automatically classify BOL, POD, RC, and Invoice documents and route them to the right workflows instantly.</p>
+          <ul class="feature-points">
+            <li>96.1% classification accuracy</li>
+            <li>Per-field confidence display</li>
+            <li>Auto-routing to workflows</li>
+            <li>Version control</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div class="mock-row" style="margin-bottom:12px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">Document Center</span>
+              <span style="font-size:.72rem;color:var(--gray);">96.1% accuracy</span>
+            </div>
+            <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px;margin-bottom:8px;">
+              <div class="mock-row">
+                <span style="font-size:.78rem;font-weight:600;color:var(--white);">BOL-2847-A.pdf</span>
+                <span class="badge badge-green" style="font-size:.6rem;">Classified</span>
+              </div>
+              <div style="font-size:.65rem;color:var(--gray);margin:5px 0 8px;">Bill of Lading · Confidence: 98.4%</div>
+              <div class="mock-label" style="margin-bottom:3px;">Shipper name · 99%</div>
+              <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:99%;background:#4ade80;"></div></div>
+              <div class="mock-label" style="margin-bottom:3px;">Load weight · 97%</div>
+              <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:97%;"></div></div>
+              <div class="mock-label" style="margin-bottom:3px;">Delivery address · 94%</div>
+              <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:94%;"></div></div>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:8px 10px;font-size:.68rem;text-align:center;">
+                <div style="color:var(--orange);font-weight:700;">24</div>
+                <div style="color:var(--gray);">BOL</div>
+              </div>
+              <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:8px 10px;font-size:.68rem;text-align:center;">
+                <div style="color:var(--orange);font-weight:700;">31</div>
+                <div style="color:var(--gray);">POD</div>
+              </div>
+              <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:8px 10px;font-size:.68rem;text-align:center;">
+                <div style="color:var(--orange);font-weight:700;">18</div>
+                <div style="color:var(--gray);">RC</div>
+              </div>
+              <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:8px 10px;font-size:.68rem;text-align:center;">
+                <div style="color:var(--orange);font-weight:700;">47</div>
+                <div style="color:var(--gray);">Invoice</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 07: POD Manager -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 07</div>
+          <h3>POD Manager</h3>
+          <p style="color:#4a5568;">6-stage Kanban pipeline from collection to approval. AI validates signatures and legibility before portal submission — eliminating rejection loops.</p>
+          <ul class="feature-points">
+            <li>6-stage Kanban board</li>
+            <li>AI signature validation</li>
+            <li>Portal upload automation</li>
+            <li>Exception flagging</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen" style="overflow:hidden;">
+            <div class="mock-row" style="margin-bottom:12px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">POD Manager</span>
+              <span style="font-size:.72rem;color:var(--gray);">6-stage pipeline</span>
+            </div>
+            <div class="mock-kanban">
+              <div class="mock-kanban-col">
+                <div class="col-title">Pending</div>
+                <div class="mock-kanban-card">#FQ-2850</div>
+                <div class="mock-kanban-card">#FQ-2851</div>
+              </div>
+              <div class="mock-kanban-col">
+                <div class="col-title">Collected</div>
+                <div class="mock-kanban-card">#FQ-2847</div>
+              </div>
+              <div class="mock-kanban-col">
+                <div class="col-title">AI Review</div>
+                <div class="mock-kanban-card" style="border-left:2px solid var(--orange);">#FQ-2844</div>
+              </div>
+              <div class="mock-kanban-col">
+                <div class="col-title">Approved</div>
+                <div class="mock-kanban-card" style="border-left:2px solid #4ade80;">#FQ-2840</div>
+                <div class="mock-kanban-card" style="border-left:2px solid #4ade80;">#FQ-2839</div>
+              </div>
+              <div class="mock-kanban-col">
+                <div class="col-title">Uploaded</div>
+                <div class="mock-kanban-card" style="border-left:2px solid #4ade80;">#FQ-2835</div>
+              </div>
+              <div class="mock-kanban-col">
+                <div class="col-title">Complete</div>
+                <div class="mock-kanban-card" style="border-left:2px solid #4ade80;">#FQ-2830</div>
+                <div class="mock-kanban-card" style="border-left:2px solid #4ade80;">#FQ-2828</div>
+              </div>
+            </div>
+            <div style="margin-top:12px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:8px;padding:8px;">
+              <div style="font-size:.65rem;color:var(--orange);font-weight:600;margin-bottom:3px;">AI Validation</div>
+              <div style="font-size:.65rem;color:var(--gray);">#FQ-2844: Signature detected · Legibility 91% · Routing to portal upload.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 08: RPA Bot Manager -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 08</div>
+          <h3>RPA Bot Manager</h3>
+          <p style="color:var(--gray);">Monitor 12 bots in real-time with live logs. Track 5.2 FTE saved and 72.4 daily bot-hours — with automatic error recovery and performance analytics.</p>
+          <ul class="feature-points">
+            <li>12 active bots</li>
+            <li>Live execution logs</li>
+            <li>Performance analytics</li>
+            <li>Error recovery</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div class="mock-row" style="margin-bottom:10px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">RPA Bot Manager</span>
+              <span style="font-size:.72rem;color:#4ade80;">12/12 Active</span>
+            </div>
+            <div class="mock-kpi-grid" style="grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+              <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;text-align:center;">
+                <div style="font-size:1rem;font-weight:700;color:var(--orange);">5.2</div>
+                <div style="font-size:.6rem;color:var(--gray);">FTE Saved</div>
+              </div>
+              <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;text-align:center;">
+                <div style="font-size:1rem;font-weight:700;color:var(--white);">72.4h</div>
+                <div style="font-size:.6rem;color:var(--gray);">Daily Hours</div>
+              </div>
+              <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;text-align:center;">
+                <div style="font-size:1rem;font-weight:700;color:var(--white);">99.1%</div>
+                <div style="font-size:.6rem;color:var(--gray);">Uptime</div>
+              </div>
+            </div>
+            <div class="mock-bot-row">
+              <div><div class="mock-bot-name">POD Collector</div><div class="mock-bot-sub">6 portals · 312 docs today</div></div>
+              <span class="badge badge-green" style="font-size:.6rem;">Running</span>
+            </div>
+            <div class="mock-bot-row">
+              <div><div class="mock-bot-name">Invoice Processor</div><div class="mock-bot-sub">148 invoices matched</div></div>
+              <span class="badge badge-green" style="font-size:.6rem;">Running</span>
+            </div>
+            <div class="mock-bot-row">
+              <div><div class="mock-bot-name">Rate Sync Bot</div><div class="mock-bot-sub">Processing 8 lanes</div></div>
+              <span class="badge badge-orange" style="font-size:.6rem;">Busy</span>
+            </div>
+            <div class="mock-bot-row">
+              <div><div class="mock-bot-name">Compliance Monitor</div><div class="mock-bot-sub">32 carriers checked</div></div>
+              <span class="badge badge-green" style="font-size:.6rem;">Running</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 09: AI Command Center -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 09</div>
+          <h3>AI Command Center</h3>
+          <p style="color:#4a5568;">6 AI models with accuracy tracking. Full decision audit trail for compliance and explainability — every AI action is logged and justified.</p>
+          <ul class="feature-points">
+            <li>6 model dashboard</li>
+            <li>Accuracy trend tracking</li>
+            <li>Decision explanations</li>
+            <li>Compliance audit log</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div style="font-weight:700;font-size:.9rem;color:var(--white);margin-bottom:12px;">AI Command Center</div>
+            <div class="mock-model-row">
+              <div class="mock-model-dot" style="background:#4ade80;"></div>
+              <span class="mock-model-name">Carrier Matcher</span>
+              <span class="mock-model-acc">94.8%</span>
+            </div>
+            <div class="mock-model-row">
+              <div class="mock-model-dot" style="background:#4ade80;"></div>
+              <span class="mock-model-name">Document Classifier</span>
+              <span class="mock-model-acc">96.1%</span>
+            </div>
+            <div class="mock-model-row">
+              <div class="mock-model-dot" style="background:#4ade80;"></div>
+              <span class="mock-model-name">ETA Predictor</span>
+              <span class="mock-model-acc">92.4%</span>
+            </div>
+            <div class="mock-model-row">
+              <div class="mock-model-dot" style="background:#fbbf24;"></div>
+              <span class="mock-model-name">Invoice Reconciler</span>
+              <span class="mock-model-acc" style="color:#fbbf24;">88.3%</span>
+            </div>
+            <div class="mock-model-row">
+              <div class="mock-model-dot" style="background:#4ade80;"></div>
+              <span class="mock-model-name">Auto-Reply Model</span>
+              <span class="mock-model-acc">89.2%</span>
+            </div>
+            <div class="mock-model-row">
+              <div class="mock-model-dot" style="background:#4ade80;"></div>
+              <span class="mock-model-name">Rate Intelligence</span>
+              <span class="mock-model-acc">91.7%</span>
+            </div>
+            <div style="margin-top:10px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:8px;padding:8px;">
+              <div style="font-size:.63rem;color:var(--orange);font-weight:600;margin-bottom:3px;">Latest Audit Entry</div>
+              <div style="font-size:.63rem;color:var(--gray);">14:32 · Carrier Matcher selected Swift Transport for #FQ-2847 · Confidence 96 · Audit ID: AU-4821</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 10: Invoice Center -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 10</div>
+          <h3>Invoice Center</h3>
+          <p style="color:var(--gray);">AR/AP management with AI reconciliation. 148 invoices auto-matched. Batch operations and aging reports — with QuickBooks integration built in.</p>
+          <ul class="feature-points">
+            <li>AI auto-reconciliation</li>
+            <li>Aging dashboards</li>
+            <li>Batch processing</li>
+            <li>QuickBooks integration</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div class="mock-row" style="margin-bottom:12px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">Invoice Center</span>
+              <span style="font-size:.72rem;color:#4ade80;">148 auto-matched</span>
+            </div>
+            <div class="mock-kpi-grid" style="margin-bottom:10px;">
+              <div class="mock-kpi">
+                <div class="k-label">AR Outstanding</div>
+                <div class="k-val" style="font-size:.95rem;">$248,420</div>
+                <div class="k-sub warn">14 pending</div>
+              </div>
+              <div class="mock-kpi">
+                <div class="k-label">AP Due</div>
+                <div class="k-val" style="font-size:.95rem;">$189,100</div>
+                <div class="k-sub warn">9 due soon</div>
+              </div>
+            </div>
+            <div class="mock-table-row" style="font-size:.62rem;color:var(--gray);">
+              <span>Invoice</span><span>Amount</span><span>Status</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.73rem;">INV-4821</span>
+              <span class="col-side">$3,240</span>
+              <span class="badge badge-green" style="font-size:.58rem;padding:2px 6px;">Matched</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.73rem;">INV-4820</span>
+              <span class="col-side">$5,180</span>
+              <span class="badge badge-orange" style="font-size:.58rem;padding:2px 6px;">Review</span>
+            </div>
+            <div class="mock-table-row">
+              <span class="col-main" style="font-size:.73rem;">INV-4819</span>
+              <span class="col-side">$2,760</span>
+              <span class="badge badge-green" style="font-size:.58rem;padding:2px 6px;">Matched</span>
+            </div>
+            <div style="margin-top:8px;font-size:.65rem;color:var(--gray);text-align:center;">QuickBooks sync: 2 min ago · 148/156 matched</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 11: Rate Intelligence -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 11</div>
+          <h3>Rate Intelligence</h3>
+          <p style="color:#4a5568;">AI rate calculator with market trend analysis. Seasonal factors, lane benchmarking, and margin optimization — so you always quote with confidence.</p>
+          <ul class="feature-points">
+            <li>Market rate benchmarking</li>
+            <li>Seasonal trend analysis</li>
+            <li>Margin optimization</li>
+            <li>Historical lane data</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div style="font-weight:700;font-size:.9rem;color:var(--white);margin-bottom:4px;">Rate Intelligence</div>
+            <div style="font-size:.68rem;color:var(--gray);margin-bottom:12px;">Chicago → Dallas · 48ft Dry Van</div>
+            <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px;margin-bottom:10px;">
+              <div class="mock-row">
+                <span style="font-size:.75rem;color:var(--gray);">AI Suggested Rate</span>
+                <span style="font-size:1.3rem;font-weight:700;color:var(--orange);">$2,840</span>
+              </div>
+              <div style="font-size:.65rem;color:var(--gray);">Market range: $2,650 – $3,100 · Margin: 18.4%</div>
+            </div>
+            <div class="mock-label" style="margin-bottom:3px;">Lane demand (Apr–Jun peak)</div>
+            <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:82%;"></div></div>
+            <div class="mock-label" style="margin-bottom:3px;">Fuel surcharge factor</div>
+            <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:65%;background:#fbbf24;"></div></div>
+            <div class="mock-label" style="margin-bottom:3px;">Capacity availability</div>
+            <div class="mock-bar-wrap"><div class="mock-bar-fill" style="width:55%;background:#4ade80;"></div></div>
+            <div style="margin-top:10px;font-size:.65rem;color:var(--gray);">Based on 248 historical shipments · Updated 6 min ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FEATURE 12: Communication Hub -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-row-content animate">
+          <div class="section-tag">Feature 12</div>
+          <h3>Communication Hub</h3>
+          <p style="color:var(--gray);">Unified inbox for all stakeholders. AI auto-reply with 89% accuracy. Automatic message classification routes every message to the right team instantly.</p>
+          <ul class="feature-points">
+            <li>Unified inbox</li>
+            <li>AI auto-reply</li>
+            <li>Smart classification</li>
+            <li>Template management</li>
+          </ul>
+        </div>
+        <div class="feature-mockup animate">
+          <div class="mockup-screen">
+            <div class="mock-row" style="margin-bottom:12px;">
+              <span style="font-weight:700;font-size:.9rem;color:var(--white);">Communication Hub</span>
+              <span style="font-size:.72rem;color:var(--orange);">AI: 89% accuracy</span>
+            </div>
+            <div class="mock-inbox-item">
+              <div class="mock-inbox-avatar">ST</div>
+              <div class="mock-inbox-body">
+                <div class="mock-inbox-name">Swift Transport · <span class="badge badge-orange" style="font-size:.55rem;padding:1px 5px;">POD Query</span></div>
+                <div class="mock-inbox-msg">Please confirm receipt of POD for load #FQ-2847...</div>
+              </div>
+            </div>
+            <div class="mock-inbox-item">
+              <div class="mock-inbox-avatar">MW</div>
+              <div class="mock-inbox-body">
+                <div class="mock-inbox-name">Midwest Freight · <span class="badge badge-blue" style="font-size:.55rem;padding:1px 5px;">Rate Request</span></div>
+                <div class="mock-inbox-msg">Can you quote Chicago to Memphis next Tuesday?</div>
+              </div>
+            </div>
+            <div class="mock-inbox-item">
+              <div class="mock-inbox-avatar">AP</div>
+              <div class="mock-inbox-body">
+                <div class="mock-inbox-name">Apex Freight · <span class="badge badge-green" style="font-size:.55rem;padding:1px 5px;">Confirmed</span></div>
+                <div class="mock-inbox-msg">Rate confirmation accepted for #FQ-2851. Pickup...</div>
+              </div>
+            </div>
+            <div style="margin-top:10px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:8px;padding:8px;">
+              <div style="font-size:.63rem;color:var(--orange);font-weight:600;margin-bottom:3px;">AI Auto-Reply Sent</div>
+              <div style="font-size:.63rem;color:var(--gray);">Swift Transport: "POD confirmed for #FQ-2847. Uploaded to portal at 14:18." · Confidence: 94%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CTA: Demo -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="section section-dark" id="demo">
+    <div class="container">
+      <div class="section-header animate" style="max-width:620px;margin-inline:auto;text-align:center;">
+        <div class="section-tag">Get Started</div>
+        <h2>Ready to See It in Action?</h2>
+        <p>Get a personalized walkthrough of all 12 FreightIQ modules — and see exactly how much time and money your operation can save.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:36px;">
+          <a href="mailto:amit@signitysolutions.com?subject=FreightIQ Demo Request" class="btn-primary btn-lg">Request Demo</a>
+          <a href="index.html" class="btn-secondary btn-lg">Back to Home</a>
+        </div>
+        <p style="margin-top:24px;font-size:.82rem;color:var(--gray);">No credit card required &nbsp;·&nbsp; 30-day free trial &nbsp;·&nbsp; Setup in 48 hours</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>FreightIQ</h3>
+          <p>AI-powered freight brokerage automation. From load intake to payment — fully automated by Signity Solutions.</p>
+          <p style="margin-top:16px;font-size:.88rem;">✉ amit@signitysolutions.com</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="features.html">Features</a></li>
+            <li><a href="automation.html">AI &amp; RPA</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="for-brokers.html">For Brokers</a></li>
+            <li><a href="for-carriers.html">For Carriers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Signity Solutions. All rights reserved.</span>
+        <span>Built with AI &amp; RPA by <a href="about.html">Signity Solutions</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

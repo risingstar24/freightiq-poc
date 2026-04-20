@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — FreightIQ</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Compare table styles */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 40px;
+      font-size: .9rem;
+    }
+    .compare-table th,
+    .compare-table td {
+      padding: 14px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--text-muted, #64748b);
+    }
+    .compare-table thead th {
+      font-weight: 700;
+      font-size: .95rem;
+      padding-bottom: 18px;
+      border-bottom: 2px solid rgba(0,0,0,.1);
+    }
+    .compare-table thead th:nth-child(3) {
+      color: var(--orange, #f97316);
+    }
+    .compare-table tbody tr:hover {
+      background: rgba(249,115,22,.04);
+    }
+    .compare-table td.check {
+      color: #22c55e;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .compare-table td.cross {
+      color: #94a3b8;
+      font-size: 1.1rem;
+    }
+    .compare-table td:nth-child(3) {
+      background: rgba(249,115,22,.04);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div>FreightIQ<span class="nav-logo-sub">BY SIGNITY SOLUTIONS</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="features.html">Features</a>
+      <a href="for-brokers.html">For Brokers</a>
+      <a href="for-carriers.html">For Carriers</a>
+      <a href="automation.html">AI &amp; RPA</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="about.html">About</a>
+    </div>
+    <a href="#demo" class="btn-primary nav-cta btn-sm">Request Demo</a>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav">
+  <a href="features.html">Features</a>
+  <a href="for-brokers.html">For Brokers</a>
+  <a href="for-carriers.html">For Carriers</a>
+  <a href="automation.html">AI &amp; RPA</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="about.html">About</a>
+  <a href="#demo" class="btn-primary">Request Demo</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <span class="section-tag">Simple, Transparent Pricing</span>
+    <h1>Choose the Plan That<br><span style="color:var(--orange)">Fits Your Volume</span></h1>
+    <p>All plans include a 30-day free trial. No credit card required to start.</p>
+  </div>
+</section>
+
+<!-- PRICING CARDS -->
+<section class="section section-light">
+  <div class="container">
+    <div class="grid-3" style="align-items:stretch;">
+
+      <!-- Starter -->
+      <div class="pricing-card animate">
+        <h3>Starter</h3>
+        <div class="price"><sup>$</sup>299<sub>/mo</sub></div>
+        <p>Perfect for growing brokerages processing up to 100 loads/month</p>
+        <ul class="feature-list">
+          <li>Up to 100 loads/month</li>
+          <li>4 RPA bots included</li>
+          <li>3 AI models (matching, ETA, docs)</li>
+          <li>Document Center &amp; POD Manager</li>
+          <li>Email support (24hr response)</li>
+          <li>Basic analytics dashboard</li>
+          <li class="no">CRM integration</li>
+          <li class="no">White-label options</li>
+          <li class="no">Custom bot development</li>
+          <li class="no">API access</li>
+        </ul>
+        <a href="#demo" class="btn-outline" style="display:block;text-align:center;margin-top:auto;">Start Free Trial</a>
+      </div>
+
+      <!-- Professional -->
+      <div class="pricing-card featured animate">
+        <div class="pricing-badge">Most Popular</div>
+        <h3>Professional</h3>
+        <div class="price"><sup>$</sup>799<sub>/mo</sub></div>
+        <p>For established brokerages scaling to 500+ loads/month</p>
+        <ul class="feature-list">
+          <li>Up to 500 loads/month</li>
+          <li>All 12 RPA bots included</li>
+          <li>All 6 AI models included</li>
+          <li>Full platform access</li>
+          <li>CRM &amp; QuickBooks integration</li>
+          <li>Priority support (4hr response)</li>
+          <li>Advanced analytics &amp; reports</li>
+          <li>API access (read/write)</li>
+          <li class="no">White-label options</li>
+          <li class="no">Custom bot development</li>
+        </ul>
+        <a href="#demo" class="btn-primary" style="display:block;text-align:center;margin-top:auto;">Start Free Trial</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card animate">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <p style="font-size:1rem;margin-top:8px;">For large brokerages and 3PLs with complex requirements</p>
+        <ul class="feature-list">
+          <li>Unlimited loads/month</li>
+          <li>All 12 bots + custom bots</li>
+          <li>All 6 AI models + custom training</li>
+          <li>White-label &amp; custom branding</li>
+          <li>Dedicated success manager</li>
+          <li>SLA-backed uptime guarantee</li>
+          <li>Custom integrations &amp; API</li>
+          <li>On-premise deployment option</li>
+          <li>SSO &amp; advanced security</li>
+          <li>Quarterly business reviews</li>
+        </ul>
+        <a href="mailto:amit@signitysolutions.com" class="btn-outline" style="display:block;text-align:center;margin-top:auto;">Contact Sales</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE COMPARISON TABLE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header animate">
+      <h2>Compare All Features</h2>
+    </div>
+    <div style="overflow-x:auto;" class="animate">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Feature</th>
+            <th>Starter</th>
+            <th>Professional</th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Loads per month</td>
+            <td>100</td>
+            <td>500</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td>RPA Bots</td>
+            <td>4</td>
+            <td>12</td>
+            <td>12 + Custom</td>
+          </tr>
+          <tr>
+            <td>AI Models</td>
+            <td>3</td>
+            <td>6</td>
+            <td>6 + Custom</td>
+          </tr>
+          <tr>
+            <td>Document OCR</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>POD Automation</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Carrier Directory</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Live GPS Tracking</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Invoice Center</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Analytics Dashboard</td>
+            <td>Basic</td>
+            <td>Advanced</td>
+            <td>Custom</td>
+          </tr>
+          <tr>
+            <td>CRM Integration</td>
+            <td class="cross">&#10007;</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>QuickBooks Integration</td>
+            <td class="cross">&#10007;</td>
+            <td class="check">&#10003;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>API Access</td>
+            <td class="cross">&#10007;</td>
+            <td>Read/Write</td>
+            <td>Full + Webhooks</td>
+          </tr>
+          <tr>
+            <td>White-Label</td>
+            <td class="cross">&#10007;</td>
+            <td class="cross">&#10007;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Custom Bots</td>
+            <td class="cross">&#10007;</td>
+            <td class="cross">&#10007;</td>
+            <td class="check">&#10003;</td>
+          </tr>
+          <tr>
+            <td>Support</td>
+            <td>Email</td>
+            <td>Priority</td>
+            <td>Dedicated</td>
+          </tr>
+          <tr>
+            <td>SLA</td>
+            <td>99.5%</td>
+            <td>99.9%</td>
+            <td>99.99%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header animate">
+      <h2>Pricing Questions</h2>
+    </div>
+    <div class="accordion animate" style="max-width:760px;margin:0 auto;">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">Can I change plans at any time?</button>
+        <div class="accordion-body">
+          <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle. Upgrades are prorated.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">What counts as a "load"?</button>
+        <div class="accordion-body">
+          <p>A load is any freight shipment that enters the FreightIQ system — whether booked, in transit, or delivered. Cancelled loads within 24 hours of creation do not count against your monthly limit.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">Is there a setup fee?</button>
+        <div class="accordion-body">
+          <p>No setup fees on Starter or Professional. Enterprise plans include a one-time implementation fee that covers custom bot development, integrations, and team training.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">Do RPA bots run 24/7?</button>
+        <div class="accordion-body">
+          <p>Yes, RPA bots run around the clock including weekends and holidays. Bot run time is tracked in your dashboard and included in your plan — no additional charges for bot usage.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger">What payment methods do you accept?</button>
+        <div class="accordion-body">
+          <p>We accept all major credit cards, ACH bank transfer, and wire transfer for annual plans. Enterprise customers can also pay via purchase order.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA / DEMO -->
+<section class="section section-dark" id="demo">
+  <div class="container" style="text-align:center;">
+    <h2 style="margin-bottom:16px;">Start Your 30-Day Free Trial</h2>
+    <p style="color:rgba(255,255,255,.6);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;">No credit card required. Full platform access.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:amit@signitysolutions.com" class="btn-primary btn-lg">Get Started Free</a>
+      <a href="mailto:amit@signitysolutions.com" class="btn-secondary btn-lg">Talk to Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>FreightIQ</h3>
+        <p>AI-powered freight brokerage automation. From load intake to payment — fully automated by Signity Solutions.</p>
+        <p style="margin-top:16px;font-size:.88rem;">&#9993; amit@signitysolutions.com</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="features.html">Features</a></li>
+          <li><a href="automation.html">AI &amp; RPA</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="for-brokers.html">For Brokers</a></li>
+          <li><a href="for-carriers.html">For Carriers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Signity Solutions. All rights reserved.</span>
+      <span>Built with AI &amp; RPA by <a href="about.html">Signity Solutions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
